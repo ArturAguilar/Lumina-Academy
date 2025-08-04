@@ -11,9 +11,16 @@ const TITULOS = {
   "/area_aluno/dashboard": "Dashboard",
   "/area_aluno/materias": "Matérias",
   "/area_aluno/exercicios": "Exercícios",
+  "/area_aluno/simulados": "Simulados",
+  "/area_aluno/biblioteca": "Biblioteca",
+  "/area_aluno/transmissoes": "Transmissões",
   "/area_aluno/cronograma": "Cronograma",
+  "/area_aluno/kanban": "Kanban",
   "/area_aluno/desempenho": "Desempenho",
-  "/area_aluno/suporte": "Suporte"
+  "/area_aluno/conquistas": "Conquistas",
+  "/area_aluno/chat": "Chat",
+  "/area_aluno/suporte": "Suporte",
+  "/area_aluno/configuracao": "Configuração"
 };
 
 const AlunoLayout = ({ children }) => {

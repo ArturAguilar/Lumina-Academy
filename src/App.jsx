@@ -24,6 +24,7 @@ import AlunoLayout from "./components/area_aluno/AlunoLayout";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import BibliotecaAluno from "./components/area_aluno/biblioteca";
 import TransmissoesAluno from "./components/area_aluno/transmissoes";
+import Kanban from "./components/area_aluno/kanban";
 
 function LandingPage() {
   return (
@@ -48,10 +49,12 @@ function MainContent() {
     { path: "/area_aluno/exercicios", element: <Exercicios /> },
     { path: "/area_aluno/exercicios/:materia", element: <ExerciciosPage /> },
     { path: "/area_aluno/cronograma", element: <Cronograma /> },
+    { path: "/area_aluno/kanban", element: <Kanban /> },
     { path: "/area_aluno/desempenho", element: <Desempenho /> },
     { path: "/area_aluno/simulados", element: <Simulados /> },
     { path: "/area_aluno/biblioteca", element: <BibliotecaAluno /> },
     { path: "/area_aluno/transmissoes", element: <TransmissoesAluno /> },
+    { path: "/area_aluno/transmissoes/:materia", element: <TransmissoesAluno /> },
   ];
 
   return (
