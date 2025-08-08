@@ -14,7 +14,7 @@ const menuItems = [
   { icon: "bx-medal", label: "Conquistas", to: "/area_aluno/conquistas" },
   { icon: "bx-chat", label: "Chat", to: "/area_aluno/chat" },
   { icon: "bxr bx-headphone-mic", label: "Suporte", to: "/area_aluno/suporte" },
-  { icon: "bx-cog", label: "Configuração", to: "/area_aluno/configuracao" },
+  // { icon: "bx-cog", label: "Configuração", to: "/area_aluno/configuracoes" },
 ];
 
 const Sidebar = ({ open, onClose }) => {
@@ -68,6 +68,16 @@ const Sidebar = ({ open, onClose }) => {
               active = location.pathname.startsWith("/area_aluno/materias");
             } else if (item.label === "Exercícios") {
               active = location.pathname.startsWith("/area_aluno/exercicios");
+            } else if (item.label === "Transmissões") {
+              active = location.pathname.startsWith("/area_aluno/transmissoes");
+            } else if (item.label === "Biblioteca") {
+              active = location.pathname.startsWith("/area_aluno/biblioteca");
+            } else if (item.label === "Simulados") {
+              active = location.pathname.startsWith("/area_aluno/simulados");
+            } else if (item.label === "Conquistas") {
+              active = location.pathname === "/area_aluno/conquistas";
+            // } else if (item.label === "Configuração") {
+            //   active = location.pathname === "/area_aluno/configuracoes";
             } else {
               active = location.pathname === item.to;
             }

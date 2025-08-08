@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -58,7 +59,7 @@ const Dashboard = () => {
           </span>
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
         {/* Card 1 */}
         <div className="bg-white rounded-xl shadow p-5 flex items-center justify-between min-w-[120px] w-full">
           <div>
@@ -82,7 +83,7 @@ const Dashboard = () => {
           </div>
         </div>
         {/* Card 3 */}
-        <div className="bg-white rounded-xl shadow p-5 flex items-center justify-between min-w-[120px] w-full col-span-2 md:col-span-1">
+        <div className="bg-white rounded-xl shadow p-5 flex items-center justify-between min-w-[120px] w-full">
           <div>
             <span className="text-gray-500 text-sm block mb-1">Geral</span>
             <span className="text-xl font-bold text-gray-800">73%</span>
@@ -92,6 +93,17 @@ const Dashboard = () => {
             <i className='bx bx-chart-line' style={{ fontSize: 24 }}></i>
           </div>
         </div>
+        {/* Card 4 - Conquistas */}
+        <Link to="/area_aluno/conquistas" className="bg-white rounded-xl shadow p-5 flex items-center justify-between min-w-[120px] w-full hover:shadow-lg transition-all duration-200 group">
+          <div>
+            <span className="text-gray-500 text-sm block mb-1">Desbloqueadas</span>
+            <span className="text-xl font-bold text-gray-800">3</span>
+            <div className="text-sm md:text-base text-slate-400 mt-1 group-hover:text-amber-600 transition-colors">Conquistas</div>
+          </div>
+          <div className="bg-amber-100 text-amber-500 rounded-full p-2 flex items-center justify-center group-hover:bg-amber-200 transition-colors">
+            <i className='bx bx-medal' style={{ fontSize: 24 }}></i>
+          </div>
+        </Link>
       </div>
       {/* Cards e Calendário lado a lado */}
       <div className="flex flex-col lg:flex-row gap-6 mb-8">
@@ -99,7 +111,7 @@ const Dashboard = () => {
         <div className="bg-white rounded-2xl shadow p-2 sm:p-4 md:p-6 w-full max-w-md mx-auto lg:mx-0 lg:w-[380px] flex-1 mb-8 lg:mb-0" >
           <div className="flex items-center justify-between mb-4 sm:mb-6">
             <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-800 whitespace-nowrap">Suas Matérias</h2>
-            <a href="#" className="text-blue-600 font-medium text-xs sm:text-sm md:text-base hover:underline whitespace-nowrap">Ver todas</a>
+            <Link to="/area_aluno/materias" className="text-blue-600 font-medium text-xs sm:text-sm md:text-base hover:underline whitespace-nowrap">Ver todas</Link>
           </div>
           <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
             {/* Matéria 1 */}

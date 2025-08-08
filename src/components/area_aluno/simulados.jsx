@@ -140,6 +140,45 @@ const Simulados = () => {
             margin-left: 0 !important;
             margin-right: 0 !important;
           }
+          /* Reduzir tamanhos de fonte no mobile */
+          .simulados-card .materia-title {
+            font-size: 18px !important;
+          }
+          .simulados-card .materia-subtitle {
+            font-size: 13px !important;
+          }
+          .simulados-card .tentativa-text {
+            font-size: 12px !important;
+          }
+          .simulados-card .tentativas-count {
+            font-size: 11px !important;
+          }
+          .simulados-card .btn-iniciar {
+            font-size: 13px !important;
+            padding: 0.4rem 1rem !important;
+          }
+          .simulados-filtros button {
+            font-size: 0.95rem !important;
+            padding: 0.6rem 1.8rem !important;
+          }
+          .simulados-card-vest .vest-title {
+            font-size: 17px !important;
+          }
+          .simulados-card-vest .vest-subtitle {
+            font-size: 13px !important;
+          }
+          .simulados-card-vest .vest-stats-number {
+            font-size: 24px !important;
+          }
+          .simulados-card-vest .vest-stats-label {
+            font-size: 12px !important;
+          }
+          .simulados-card-vest .vest-materias {
+            font-size: 13px !important;
+          }
+          .simulados-card-vest .btn-iniciar-vest {
+            font-size: 16px !important;
+          }
         }
       `}</style>
       {/* Barra de navegação */}
@@ -254,20 +293,20 @@ const Simulados = () => {
                 </span>
                 {/* Título e subtítulo */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', flex: 1 }}>
-                  <span style={{ fontWeight: 700, fontSize: 20, color: '#23272F', lineHeight: 1.1 }}>{mat.nome}</span>
-                  <span style={{ color: '#555', fontSize: 15, fontWeight: 500, marginTop: 1 }}>{mat.questoes} questões • {mat.tempo}</span>
+                  <span className="materia-title" style={{ fontWeight: 700, fontSize: 20, color: '#23272F', lineHeight: 1.1 }}>{mat.nome}</span>
+                  <span className="materia-subtitle" style={{ color: '#555', fontSize: 15, fontWeight: 500, marginTop: 1 }}>{mat.questoes} questões • {mat.tempo}</span>
                 </div>
               </div>
               {/* Última tentativa ou novo */}
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: 4 }}>
-                <span style={{ color: '#888', fontSize: 14.5, fontWeight: 500 }}>
+                <span className="tentativa-text" style={{ color: '#888', fontSize: 14.5, fontWeight: 500 }}>
                   {mat.novo ? 'Primeira tentativa' : 'Última tentativa:'}
                 </span>
                 <span style={{ flex: 1 }} />
                 {mat.novo ? (
-                  <span style={{ color: '#2563eb', fontWeight: 700, fontSize: 14.5 }}>Novo!</span>
+                  <span className="tentativa-text" style={{ color: '#2563eb', fontWeight: 700, fontSize: 14.5 }}>Novo!</span>
                 ) : (
-                  <span style={{ color: '#222', fontWeight: 700, fontSize: 14.5 }}>{mat.ultima}</span>
+                  <span className="tentativa-text" style={{ color: '#222', fontWeight: 700, fontSize: 14.5 }}>{mat.ultima}</span>
                 )}
               </div>
               {/* Barra de progresso */}
@@ -284,9 +323,9 @@ const Simulados = () => {
               </div>
               {/* Tentativas e botão */}
               <div style={{ display: 'flex', alignItems: 'center', marginTop: 8 }}>
-                <span style={{ color: '#888', fontSize: 13.5, fontWeight: 500 }}>{mat.tentativas !== undefined ? `${mat.tentativas} tentativa${mat.tentativas === 1 ? '' : 's'}` : mat.conceitos !== undefined ? `${mat.conceitos} conceitos` : ''}</span>
+                <span className="tentativas-count" style={{ color: '#888', fontSize: 13.5, fontWeight: 500 }}>{mat.tentativas !== undefined ? `${mat.tentativas} tentativa${mat.tentativas === 1 ? '' : 's'}` : mat.conceitos !== undefined ? `${mat.conceitos} conceitos` : ''}</span>
                 <span style={{ flex: 1 }} />
-                <button style={{
+                <button className="btn-iniciar" style={{
                   background: mat.botao,
                   color: mat.botaoTxt,
                   border: 'none',
@@ -360,8 +399,8 @@ const Simulados = () => {
                   whiteSpace: 'nowrap',
                 }}>{vest.sigla}</span>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', flex: 1 }}>
-                  <span style={{ fontWeight: 700, fontSize: 19, color: '#23272F', lineHeight: 1.1 }}>{vest.nome}</span>
-                  <span style={{ color: '#555', fontSize: 15, fontWeight: 500, marginTop: 2 }}>{vest.status ? vest.status : 'Simulado completo'} • {vest.tempo}</span>
+                  <span className="vest-title" style={{ fontWeight: 700, fontSize: 19, color: '#23272F', lineHeight: 1.1 }}>{vest.nome}</span>
+                  <span className="vest-subtitle" style={{ color: '#555', fontSize: 15, fontWeight: 500, marginTop: 2 }}>{vest.status ? vest.status : 'Simulado completo'} • {vest.tempo}</span>
                   <span style={{ color: vest.dificuldadeCor || (vest.dificuldade === 'Muito Difícil' ? '#ef4444' : '#fbbf24'), fontSize: 14, fontWeight: 600, marginTop: 2, display: 'flex', alignItems: 'center', gap: 4 }}>
                     <span style={{ fontSize: 13, marginRight: 3, display: 'inline-block', width: 8, height: 8, background: vest.dificuldadeCor || (vest.dificuldade === 'Muito Difícil' ? '#ef4444' : '#fbbf24'), borderRadius: '50%' }}></span>
                     {vest.dificuldade}
@@ -370,21 +409,21 @@ const Simulados = () => {
               </div>
               <div style={{ display: 'flex', gap: 0, marginTop: 22, marginBottom: 10 }}>
                 <div style={{ flex: 1, textAlign: 'center' }}>
-                  <span style={{ fontWeight: 700, fontSize: 28, color: '#23272F' }}>{vest.questoes}</span>
-                  <div style={{ color: '#888', fontSize: 14, fontWeight: 500, marginTop: 2 }}>Questões</div>
+                  <span className="vest-stats-number" style={{ fontWeight: 700, fontSize: 28, color: '#23272F' }}>{vest.questoes}</span>
+                  <div className="vest-stats-label" style={{ color: '#888', fontSize: 14, fontWeight: 500, marginTop: 2 }}>Questões</div>
                 </div>
                 <div style={{ flex: 1, textAlign: 'center' }}>
-                  <span style={{ fontWeight: 700, fontSize: 28, color: vest.cor }}>{vest.melhorNota.toFixed(1)}</span>
-                  <div style={{ color: vest.cor, fontSize: 14, fontWeight: 500, marginTop: 2 }}>Melhor Nota</div>
+                  <span className="vest-stats-number" style={{ fontWeight: 700, fontSize: 28, color: vest.cor }}>{vest.melhorNota.toFixed(1)}</span>
+                  <div className="vest-stats-label" style={{ color: vest.cor, fontSize: 14, fontWeight: 500, marginTop: 2 }}>Melhor Nota</div>
                 </div>
                 <div style={{ flex: 1, textAlign: 'center' }}>
-                  <span style={{ fontWeight: 700, fontSize: 28, color: '#23272F' }}>{vest.tentativas}</span>
-                  <div style={{ color: '#888', fontSize: 14, fontWeight: 500, marginTop: 2 }}>Tentativas</div>
+                  <span className="vest-stats-number" style={{ fontWeight: 700, fontSize: 28, color: '#23272F' }}>{vest.tentativas}</span>
+                  <div className="vest-stats-label" style={{ color: '#888', fontSize: 14, fontWeight: 500, marginTop: 2 }}>Tentativas</div>
                 </div>
               </div>
               <div style={{ marginBottom: 12, marginLeft: 2 }}>
                 {vest.materias.map((m) => (
-                  <div key={m.nome} style={{
+                  <div key={m.nome} className="vest-materias" style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -396,7 +435,7 @@ const Simulados = () => {
                   </div>
                 ))}
               </div>
-              <button style={{
+              <button className="btn-iniciar-vest" style={{
                 background: vest.cor,
                 color: '#fff',
                 border: 'none',

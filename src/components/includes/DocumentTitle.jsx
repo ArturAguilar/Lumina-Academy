@@ -53,6 +53,13 @@ export default function DocumentTitle() {
       document.title = `Lumina Academy Students — Exercícios de ${nome.charAt(0).toUpperCase() + nome.slice(1)}`;
       return;
     }
+    // Transmissões por matéria
+    if (location.pathname.startsWith("/area_aluno/transmissoes/")) {
+      const nome = location.pathname.split("/").pop();
+      const materiaNormalizada = nome.charAt(0).toUpperCase() + nome.slice(1).replace('_', ' ');
+      document.title = `Lumina Academy Students — Transmissões de ${materiaNormalizada}`;
+      return;
+    }
     // Fallback
     document.title = "Lumina Academy";
   }, [location.pathname]);

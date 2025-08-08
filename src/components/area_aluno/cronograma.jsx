@@ -127,7 +127,7 @@ const Cronograma = () => {
       </div>
       <div className="max-w-6xl mx-auto flex justify-end mt-6 mb-8">
         <button
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg shadow transition-colors"
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg shadow transition-colors text-sm md:text-base"
           onClick={() => setShowModal(true)}
         >
           <i className="bx bx-plus text-lg"></i>
@@ -146,7 +146,7 @@ const Cronograma = () => {
             >
               &times;
             </button>
-            <h2 className="text-xl font-bold mb-4 text-gray-800">Adicionar Tarefa</h2>
+            <h2 className="text-lg md:text-xl font-bold mb-4 text-gray-800">Adicionar Tarefa</h2>
             <form className="flex flex-col gap-4">
               <input className="border rounded px-3 py-2" placeholder="Título da tarefa" />
               <input className="border rounded px-3 py-2" placeholder="Descrição/Matéria" />
@@ -160,7 +160,7 @@ const Cronograma = () => {
                 <option>Média</option>
                 <option>Baixa</option>
               </select>
-              <button type="button" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg mt-2">Salvar</button>
+              <button type="button" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg mt-2 text-sm md:text-base">Salvar</button>
             </form>
           </div>
         </div>
@@ -170,13 +170,13 @@ const Cronograma = () => {
         {/* Calendário */}
         <section className="bg-white rounded-xl shadow p-6 flex-1 md:basis-[60%] md:max-w-[60%] md:h-full">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-2xl font-bold text-gray-800">Dezembro 2024</h2>
+            <h2 className="text-lg md:text-2xl font-bold text-gray-800">Dezembro 2024</h2>
             <div className="flex gap-2">
               <button className="text-gray-400 hover:text-gray-600"><i className="bx bx-chevron-left text-2xl"></i></button>
               <button className="text-gray-400 hover:text-gray-600"><i className="bx bx-chevron-right text-2xl"></i></button>
             </div>
           </div>
-          <div className="grid grid-cols-7 text-center text-gray-500 font-medium mb-2">
+          <div className="grid grid-cols-7 text-center text-gray-500 font-medium mb-2 text-xs md:text-sm">
             {diasSemana.map((dia) => (
               <div key={dia}>{dia}</div>
             ))}
@@ -204,7 +204,7 @@ const Cronograma = () => {
           {/* Legenda de categorias */}
           <div className="pt-8">
             <hr className="mb-4 border-gray-200" />
-            <div className="flex flex-wrap gap-6 justify-center text-sm">
+            <div className="flex flex-wrap gap-6 justify-center text-xs md:text-sm">
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-blue-600 inline-block"></span>
                 <span>Estudo</span>
@@ -228,17 +228,17 @@ const Cronograma = () => {
         {/* Tarefas do dia */}
         <aside className="bg-white rounded-xl shadow p-6 w-full md:basis-[40%] md:max-w-[40%] flex-shrink-0 md:h-full md:flex md:flex-col md:justify-between flex-grow">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-gray-800">Hoje - 15 Dez</h3>
+            <h3 className="text-base md:text-lg font-bold text-gray-800">Hoje - 15 Dez</h3>
             <button className="text-blue-600 text-xl"><i className="bx bx-plus"></i></button>
           </div>
           <div className="flex flex-col gap-4">
             {tarefasHoje.map((tarefa, idx) => (
               <div key={idx} className={`border-l-4 ${tarefa.cor} ${tarefa.bg} rounded-lg p-4 flex flex-col gap-1 shadow-sm`}>
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-800">{tarefa.titulo}</span>
+                  <span className="font-semibold text-gray-800 text-sm md:text-base">{tarefa.titulo}</span>
                   <span className={`text-xs px-2 py-0.5 rounded ${tarefa.tag} font-semibold`}>{tarefa.prioridade}</span>
                 </div>
-                <span className="text-gray-500 text-sm">{tarefa.subtitulo}</span>
+                <span className="text-gray-500 text-xs md:text-sm">{tarefa.subtitulo}</span>
                 <div className="flex items-center justify-between mt-2">
                   <span className="text-xs text-gray-400 flex items-center gap-1"><i className="bx bx-time"></i> {tarefa.horario}</span>
                   <span className="text-xs text-gray-400 flex items-center gap-1"><i className="bx bx-timer"></i> {tarefa.duracao}</span>

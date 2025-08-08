@@ -91,6 +91,9 @@ const NavbarAluno = ({ titulo = "Dashboard", left }) => {
   let isSimulados = false;
   let isBiblioteca = false;
   let isTransmissoes = false;
+  let isTransmissoesMateria = false;
+  let transmissaoMateriaObj = null;
+  
   if (location.pathname === "/area_aluno/simulados") {
     isSimulados = true;
   }
@@ -99,6 +102,15 @@ const NavbarAluno = ({ titulo = "Dashboard", left }) => {
   }
   if (location.pathname === "/area_aluno/aulas" || location.pathname === "/area_aluno/transmissoes") {
     isTransmissoes = true;
+  }
+  // Verificar se está em transmissões de matéria específica
+  if (location.pathname.startsWith("/area_aluno/transmissoes/")) {
+    const parts = location.pathname.split("/");
+    const materiaKey = parts[parts.length - 1];
+    transmissaoMateriaObj = MATERIAS.find(m => m.key === materiaKey);
+    if (transmissaoMateriaObj) {
+      isTransmissoesMateria = true;
+    }
   }
   if (!materia && location.pathname.startsWith("/area_aluno/exercicios/")) {
     // Exemplo: /area_aluno/exercicios/matematica
@@ -231,7 +243,9 @@ const NavbarAluno = ({ titulo = "Dashboard", left }) => {
           ) : isBiblioteca ? (
             <h2 className="text-2xl font-bold text-gray-800">Biblioteca</h2>
           ) : isTransmissoes ? (
-            <h2 className="text-2xl font-bold text-gray-800">Aulas & Transmissões</h2>
+            <h2 className="text-2xl font-bold text-gray-800">Transmissões</h2>
+          ) : isTransmissoesMateria ? (
+            <h2 className="text-2xl font-bold text-gray-800">Transmissões de {transmissaoMateriaObj.nome}</h2>
           ) : (
             <h2 className="text-2xl font-bold text-gray-800">{titulo}</h2>
           )}

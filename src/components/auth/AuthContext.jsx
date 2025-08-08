@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
         const token = localStorage.getItem("accessToken");
         if (token) {
             setAccessToken(token);
-            fetch("http://localhost/Lumina-Academy/backend/api/user.php", {
+            fetch("http://localhost/lumina_academy/user.php", {
                 method: "GET",
                 headers: { "Authorization": `Bearer ${token}` }
             })
@@ -42,10 +42,10 @@ export function AuthProvider({ children }) {
     async function login(email, password) {
         setLoading(true);
         try {
-            const res = await fetch("http://localhost/Lumina-Academy/backend/api/login.php", {
+            const res = await fetch("http://localhost/lumina_academy/login.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, senha: password })
+                body: JSON.stringify({ email, password })
             });
             const data = await res.json();
             // Espera-se que o backend retorne: { access_token: "...", refresh_token: "..." }
@@ -55,7 +55,7 @@ export function AuthProvider({ children }) {
                 if (data.refresh_token) localStorage.setItem("refreshToken", data.refresh_token);
                 // Buscar usuário completo
                 try {
-                    const userRes = await fetch("http://localhost/Lumina-Academy/backend/api/user.php", {
+                    const userRes = await fetch("http://localhost/lumina_academy/user.php", {
                         method: "GET",
                         headers: { "Authorization": `Bearer ${data.access_token}` }
                     });
@@ -90,24 +90,24 @@ export function AuthProvider({ children }) {
         let endpoint = null;
         let payload = {};
         if (userType === "student") {
-            endpoint = "http://localhost/Lumina-Academy/backend/api/alunos/cadastro.php";
-            const cursoDesejado = form.curso_desejado || form.desiredCourse || "";
-            const universidadeDesejada = form.universidade_desejada || form.desiredUniversity || "";
-            const dataVestibular = form.data_vestibular || form.examDate || "";
+            endpoint = "http://localhost/lumina_academy/register.php";
             payload = {
-                nome: form.nome + (form.sobrenome ? (" " + form.sobrenome) : ""),
+                nome: form.nome,
+                sobrenome: form.sobrenome,
                 email: form.email,
-                senha: form.password,
-                curso_desejado: cursoDesejado,
-                universidade_desejada: universidadeDesejada,
-                data_vestibular: dataVestibular
+                password: form.password,
+                confirmPassword: form.confirmPassword,
+                userType: form.userType,
+                desiredCourse: form.desiredCourse,
+                desiredUniversity: form.desiredUniversity,
+                terms: form.terms
             };
         } else if (userType === "teacher") {
-            endpoint = "http://localhost/Lumina-Academy/backend/api/professores/cadastro.php";
+            endpoint = "http://localhost/lumina_academy/register.php";
             payload = {
                 nome: form.nome + (form.sobrenome ? (" " + form.sobrenome) : ""),
                 email: form.email,
-                senha: form.password,
+                password: form.password,
                 materias: form.materias.filter(m => m.trim() !== "")
             };
         } else {

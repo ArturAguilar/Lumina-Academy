@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import DocumentTitle from "../includes/DocumentTitle";
 
 const mensagensExemplo = [
   { nome: "Rafael Lima", iniciais: "RL", cor: "bg-green-500", texto: "👏 Excelente aula!", hora: "18:46" },
@@ -64,11 +65,91 @@ const TransmissoesAluno = () => {
 
   return (
     <main className="min-h-screen p-8">
+      <DocumentTitle />
+      <style>{`
+        @media (max-width: 768px) {
+          .transmissoes-title {
+            font-size: 1.25rem !important;
+          }
+          .transmissoes-subtitle {
+            font-size: 0.75rem !important;
+          }
+          .transmissoes-card-title {
+            font-size: 1rem !important;
+          }
+          .transmissoes-card-subtitle {
+            font-size: 0.75rem !important;
+          }
+          .transmissoes-stats {
+            font-size: 0.75rem !important;
+          }
+          .transmissoes-professor {
+            font-size: 0.75rem !important;
+          }
+          .transmissoes-btn {
+            font-size: 0.875rem !important;
+            padding: 0.375rem 0.75rem !important;
+          }
+          .transmissoes-breadcrumb {
+            font-size: 0.875rem !important;
+          }
+          .transmissoes-search {
+            font-size: 0.875rem !important;
+            width: 100% !important;
+          }
+          .transmissoes-filters {
+            font-size: 0.875rem !important;
+          }
+          .transmissoes-materia-name {
+            font-size: 1rem !important;
+          }
+          .transmissoes-materia-info {
+            font-size: 0.75rem !important;
+          }
+          .transmissoes-chat-title {
+            font-size: 1rem !important;
+          }
+          .transmissoes-chat-message {
+            font-size: 0.75rem !important;
+          }
+          /* Responsividade dos controles superiores */
+          .transmissoes-controls {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 1rem !important;
+          }
+          .transmissoes-controls-left {
+            width: 100% !important;
+          }
+          .transmissoes-controls-right {
+            flex-direction: column !important;
+            gap: 0.75rem !important;
+            align-items: flex-start !important;
+            width: 100% !important;
+          }
+          .transmissoes-search-container {
+            width: 100% !important;
+          }
+          .transmissoes-search-container input {
+            width: 100% !important;
+          }
+          .transmissoes-filters-row {
+            display: flex !important;
+            gap: 0.5rem !important;
+            width: 100% !important;
+          }
+          .transmissoes-filters-row select,
+          .transmissoes-filters-row button {
+            flex: 1 !important;
+            text-align: center !important;
+          }
+        }
+      `}</style>
       {/* Breadcrumb e cabeçalho quando visualizando uma matéria específica */}
       {materiaAtual && (
         <div className="mb-6">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-gray-600 mb-4">
+          <div className="flex items-center gap-2 text-gray-600 mb-4 transmissoes-breadcrumb">
             <i className="bx bx-home text-lg"></i>
             <span className="cursor-pointer hover:text-gray-800" onClick={() => navigate('/area_aluno/transmissoes')}>
               Biblioteca
@@ -78,46 +159,49 @@ const TransmissoesAluno = () => {
           </div>
           
           {/* Título e filtros */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between mb-6 transmissoes-controls">
+            <div className="flex items-center gap-3 transmissoes-controls-left">
               <button
                 onClick={() => navigate('/area_aluno/transmissoes')}
-                className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors"
+                className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors transmissoes-btn"
               >
                 <i className="bx bx-arrow-back text-xl"></i>
                 <span className="font-medium">Voltar</span>
               </button>
             </div>
             
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 transmissoes-controls-right">
               {/* Buscar aulas */}
-              <div className="relative">
+              <div className="relative transmissoes-search-container">
                 <input
                   type="text"
                   placeholder="Buscar aulas..."
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-64 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-64 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transmissoes-search"
                 />
                 <i className="bx bx-search absolute left-3 top-2.5 text-gray-400"></i>
               </div>
               
-              {/* Ordenar por */}
-              <select className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option>Ordenar por Data</option>
-                <option>Ordenar por Título</option>
-                <option>Ordenar por Progresso</option>
-              </select>
-              
-              {/* Filtros */}
-              <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700">
-                <i className="bx bx-filter-alt"></i>
-                Filtros
-              </button>
+              {/* Filtros em linha no mobile */}
+              <div className="transmissoes-filters-row">
+                {/* Ordenar por */}
+                <select className="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transmissoes-filters">
+                  <option>Ordenar por Data</option>
+                  <option>Ordenar por Título</option>
+                  <option>Ordenar por Progresso</option>
+                </select>
+                
+                {/* Filtros */}
+                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transmissoes-btn">
+                  <i className="bx bx-filter-alt"></i>
+                  Filtros
+                </button>
+              </div>
             </div>
           </div>
           
           {/* Título da seção */}
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-gray-800">Aulas de {materiaAtual.nome}</h1>
+            <h1 className="text-2xl font-bold text-gray-800 transmissoes-title">Aulas de {materiaAtual.nome}</h1>
           </div>
         </div>
       )}
@@ -128,7 +212,7 @@ const TransmissoesAluno = () => {
           <button
             type="button"
             onClick={() => setAba("aoVivo")}
-            className={`px-6 py-2 rounded-lg font-semibold flex items-center gap-2 text-base ${aba === "aoVivo" ? "bg-blue-600 text-white shadow" : "bg-gray-100 text-gray-600"}`}
+            className={`px-6 py-2 rounded-lg font-semibold flex items-center gap-2 text-base transmissoes-btn ${aba === "aoVivo" ? "bg-blue-600 text-white shadow" : "bg-gray-100 text-gray-600"}`}
           >
             <i className='bx bx-broadcast' style={{ fontSize: 18 }}></i>
             Aulas ao Vivo
@@ -136,7 +220,7 @@ const TransmissoesAluno = () => {
           <button
             type="button"
             onClick={() => setAba("biblioteca")}
-            className={`px-6 py-2 rounded-lg font-semibold flex items-center gap-2 text-base ${aba === "biblioteca" ? "bg-blue-600 text-white shadow" : "bg-gray-100 text-gray-600"}`}
+            className={`px-6 py-2 rounded-lg font-semibold flex items-center gap-2 text-base transmissoes-btn ${aba === "biblioteca" ? "bg-blue-600 text-white shadow" : "bg-gray-100 text-gray-600"}`}
           >
             <i className='bx bx-folder' style={{ fontSize: 18 }}></i>
             Biblioteca de Aulas
@@ -159,8 +243,8 @@ const TransmissoesAluno = () => {
               </div>
             </div>
             <div className="p-4">
-              <h3 className="font-bold text-lg text-gray-800 mb-1">Funções Quadráticas e Parábolas</h3>
-              <p className="text-gray-600 text-sm mb-3">Prof. Carlos Mendes • 15 de Nov</p>
+              <h3 className="font-bold text-lg text-gray-800 mb-1 transmissoes-card-title">Funções Quadráticas e Parábolas</h3>
+              <p className="text-gray-600 text-sm mb-3 transmissoes-card-subtitle">Prof. Carlos Mendes • 15 de Nov</p>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs text-gray-500">Progresso</span>
                 <span className="text-xs font-medium text-blue-600">75%</span>
@@ -168,7 +252,7 @@ const TransmissoesAluno = () => {
               <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
                 <div className="bg-blue-600 h-2 rounded-full" style={{width: '75%'}}></div>
               </div>
-              <div className="flex items-center text-xs text-gray-500">
+              <div className="flex items-center text-xs text-gray-500 transmissoes-stats">
                 <i className="bx bx-show mr-1"></i>
                 <span className="mr-3">980 visualizações</span>
                 <span className="bg-green-100 text-green-600 px-2 py-1 rounded">Concluída</span>
@@ -188,8 +272,8 @@ const TransmissoesAluno = () => {
               </div>
             </div>
             <div className="p-4">
-              <h3 className="font-bold text-lg text-gray-800 mb-1">Derivadas e Integrais</h3>
-              <p className="text-gray-600 text-sm mb-3">Prof. Carlos Mendes • 14 de Nov</p>
+              <h3 className="font-bold text-lg text-gray-800 mb-1 transmissoes-card-title">Derivadas e Integrais</h3>
+              <p className="text-gray-600 text-sm mb-3 transmissoes-card-subtitle">Prof. Carlos Mendes • 14 de Nov</p>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs text-gray-500">Progresso</span>
                 <span className="text-xs font-medium text-green-600">100%</span>
@@ -197,7 +281,7 @@ const TransmissoesAluno = () => {
               <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
                 <div className="bg-green-600 h-2 rounded-full" style={{width: '100%'}}></div>
               </div>
-              <div className="flex items-center text-xs text-gray-500">
+              <div className="flex items-center text-xs text-gray-500 transmissoes-stats">
                 <i className="bx bx-show mr-1"></i>
                 <span className="mr-3">980 visualizações</span>
                 <span className="bg-green-100 text-green-600 px-2 py-1 rounded">Concluída</span>
@@ -217,8 +301,8 @@ const TransmissoesAluno = () => {
               </div>
             </div>
             <div className="p-4">
-              <h3 className="font-bold text-lg text-gray-800 mb-1">Logaritmos e Propriedades</h3>
-              <p className="text-gray-600 text-sm mb-3">Prof. Carlos Mendes • 13 de Nov</p>
+              <h3 className="font-bold text-lg text-gray-800 mb-1 transmissoes-card-title">Logaritmos e Propriedades</h3>
+              <p className="text-gray-600 text-sm mb-3 transmissoes-card-subtitle">Prof. Carlos Mendes • 13 de Nov</p>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs text-gray-500">Progresso</span>
                 <span className="text-xs font-medium text-blue-600">30%</span>
@@ -226,7 +310,7 @@ const TransmissoesAluno = () => {
               <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
                 <div className="bg-blue-600 h-2 rounded-full" style={{width: '30%'}}></div>
               </div>
-              <div className="flex items-center text-xs text-gray-500">
+              <div className="flex items-center text-xs text-gray-500 transmissoes-stats">
                 <i className="bx bx-show mr-1"></i>
                 <span className="mr-3">1.5k visualizações</span>
                 <span className="bg-blue-100 text-blue-600 px-2 py-1 rounded">Continuar</span>
@@ -252,21 +336,21 @@ const TransmissoesAluno = () => {
                 <button className="w-16 h-16 rounded-full bg-black/30 flex items-center justify-center mb-4">
                   <i className="bx bx-play text-4xl text-white"></i>
                 </button>
-                <h2 className="text-white text-xl font-bold text-center">
+                <h2 className="text-white text-xl font-bold text-center transmissoes-title">
                   {materiaAtual ? 
                     `${materiaAtual.nome} - Derivadas e Integrais` : 
                     "Matemática - Derivadas e Integrais"
                   }
                 </h2>
-                <span className="text-gray-300 text-sm mt-1">Prof. Carlos Mendes • Ao Vivo</span>
+                <span className="text-gray-300 text-sm mt-1 transmissoes-subtitle">Prof. Carlos Mendes • Ao Vivo</span>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-4">
               <div className="flex gap-2 w-full sm:w-auto">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg flex items-center gap-2 w-full sm:w-auto justify-center">
+                <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg flex items-center gap-2 w-full sm:w-auto justify-center transmissoes-btn">
                   <i className="bx bx-play"></i> Assistir
                 </button>
-                <button className="bg-gray-100 text-gray-700 font-semibold px-4 py-2 rounded-lg flex items-center gap-2 w-full sm:w-auto justify-center">
+                <button className="bg-gray-100 text-gray-700 font-semibold px-4 py-2 rounded-lg flex items-center gap-2 w-full sm:w-auto justify-center transmissoes-btn">
                   <i className="bx bx-fullscreen"></i> Tela Cheia
                 </button>
               </div>
@@ -286,23 +370,23 @@ const TransmissoesAluno = () => {
               </div>
             </div>
             <div className="bg-white rounded-xl shadow p-4 mt-4">
-              <h3 className="font-bold text-gray-800 mb-2">Derivadas e Integrais - Aula 15</h3>
-              <p className="text-gray-600 text-sm">Nesta aula, vamos abordar os principais conceitos de derivadas e integrais, exemplos práticos e resolução de exercícios ao vivo.</p>
+              <h3 className="font-bold text-gray-800 mb-2 transmissoes-card-title">Derivadas e Integrais - Aula 15</h3>
+              <p className="text-gray-600 text-sm transmissoes-card-subtitle">Nesta aula, vamos abordar os principais conceitos de derivadas e integrais, exemplos práticos e resolução de exercícios ao vivo.</p>
             </div>
           </div>
           {/* Chat ao vivo */}
           <div className="w-full lg:w-[350px] flex flex-col bg-white rounded-2xl shadow p-4">
-            <h3 className="font-bold text-lg text-gray-800 mb-3 flex items-center gap-2"><i className="bx bx-chat"></i> Chat ao Vivo</h3>
+            <h3 className="font-bold text-lg text-gray-800 mb-3 flex items-center gap-2 transmissoes-chat-title"><i className="bx bx-chat"></i> Chat ao Vivo</h3>
             <div ref={chatRef} className="flex-1 overflow-y-auto mb-3 pr-2" style={{ maxHeight: 320 }}>
               {mensagens.map((msg, idx) => (
                 <div key={idx} className="flex items-start gap-2 mb-2">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${msg.cor}`}>{msg.iniciais}</div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-gray-800 text-sm">{msg.nome}</span>
-                      <span className="text-xs text-gray-400">{msg.hora}</span>
+                      <span className="font-semibold text-gray-800 text-sm transmissoes-chat-message">{msg.nome}</span>
+                      <span className="text-xs text-gray-400 transmissoes-chat-message">{msg.hora}</span>
                     </div>
-                    <div className="text-gray-700 text-sm">{msg.texto}</div>
+                    <div className="text-gray-700 text-sm transmissoes-chat-message">{msg.texto}</div>
                   </div>
                 </div>
               ))}
@@ -403,9 +487,9 @@ const TransmissoesAluno = () => {
               <div className="bg-blue-500 rounded-lg w-12 h-12 flex items-center justify-center mb-3">
                 <i className="bx bx-calculator text-white text-3xl"></i>
               </div>
-              <div className="font-bold text-lg text-gray-900 mb-1">Matemática</div>
-              <div className="text-gray-600 text-sm mb-1">24 aulas • 18h 30min</div>
-              <div className="flex items-center gap-1 text-gray-500 text-xs"><i className="bx bx-time-five"></i> Última: <span className="font-medium text-gray-700">Derivadas</span></div>
+              <div className="font-bold text-lg text-gray-900 mb-1 transmissoes-materia-name">Matemática</div>
+              <div className="text-gray-600 text-sm mb-1 transmissoes-materia-info">24 aulas • 18h 30min</div>
+              <div className="flex items-center gap-1 text-gray-500 text-xs transmissoes-materia-info"><i className="bx bx-time-five"></i> Última: <span className="font-medium text-gray-700">Derivadas</span></div>
             </div>
             {/* Física */}
             <div 
@@ -415,9 +499,9 @@ const TransmissoesAluno = () => {
               <div className="bg-purple-500 rounded-lg w-12 h-12 flex items-center justify-center mb-3">
                 <i className="bx bx-atom text-white text-3xl"></i>
               </div>
-              <div className="font-bold text-lg text-gray-900 mb-1">Física</div>
-              <div className="text-gray-600 text-sm mb-1">18 aulas • 14h 20min</div>
-              <div className="flex items-center gap-1 text-gray-500 text-xs"><i className="bx bx-time-five"></i> Última: <span className="font-medium text-gray-700">Leis de Newton</span></div>
+              <div className="font-bold text-lg text-gray-900 mb-1 transmissoes-materia-name">Física</div>
+              <div className="text-gray-600 text-sm mb-1 transmissoes-materia-info">18 aulas • 14h 20min</div>
+              <div className="flex items-center gap-1 text-gray-500 text-xs transmissoes-materia-info"><i className="bx bx-time-five"></i> Última: <span className="font-medium text-gray-700">Leis de Newton</span></div>
             </div>
             {/* Química */}
             <div 
@@ -427,9 +511,9 @@ const TransmissoesAluno = () => {
               <div className="bg-green-500 rounded-lg w-12 h-12 flex items-center justify-center mb-3">
                 <i className="bx bx-medical-flask text-white text-3xl"></i>
               </div>
-              <div className="font-bold text-lg text-gray-900 mb-1">Química</div>
-              <div className="text-gray-600 text-sm mb-1">21 aulas • 16h 45min</div>
-              <div className="flex items-center gap-1 text-gray-500 text-xs"><i className="bx bx-time-five"></i> Última: <span className="font-medium text-gray-700">Balanceamento</span></div>
+              <div className="font-bold text-lg text-gray-900 mb-1 transmissoes-materia-name">Química</div>
+              <div className="text-gray-600 text-sm mb-1 transmissoes-materia-info">21 aulas • 16h 45min</div>
+              <div className="flex items-center gap-1 text-gray-500 text-xs transmissoes-materia-info"><i className="bx bx-time-five"></i> Última: <span className="font-medium text-gray-700">Balanceamento</span></div>
             </div>
             {/* História */}
             <div 

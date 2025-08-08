@@ -1,10 +1,6 @@
-
-
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
-
-
 
 const materiasList = [
   {
@@ -304,7 +300,7 @@ const Materias = () => {
       </div>
       {/* Área de filtros */}
       <div className="grid grid-cols-2 sm:flex sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4 mb-8 w-full">
-        <span className="text-gray-600 text-base font-medium col-span-2 sm:col-span-1 sm:mr-2 mb-2 sm:mb-0">Filtrar por:</span>
+        <span className="text-gray-600 text-sm sm:text-base font-medium col-span-2 sm:col-span-1 sm:mr-2 mb-2 sm:mb-0">Filtrar por:</span>
         <button className="bg-[#2563eb] text-white font-semibold px-5 py-2 rounded-lg shadow-sm text-sm focus:outline-none w-full sm:w-auto">Todas</button>
         <button className="bg-gray-100 text-gray-500 font-semibold px-5 py-2 rounded-lg shadow-sm text-sm focus:outline-none w-full sm:w-auto">Em Progresso</button>
         <button className="bg-gray-100 text-gray-500 font-semibold px-5 py-2 rounded-lg shadow-sm text-sm focus:outline-none w-full sm:w-auto">Concluídas</button>
@@ -333,7 +329,7 @@ const Materias = () => {
             <div className={`w-full h-2 ${materia.barraBg} rounded-full mb-2`}>
               <div className={`${materia.barra} h-2 rounded-full`} style={{ width: `${materia.progresso}%` }}></div>
             </div>
-            <div className="flex items-center justify-between text-sm mb-2">
+            <div className="flex items-center justify-between text-xs sm:text-sm mb-2">
               <div className="font-bold text-gray-800">{materia.conceitos} <span className="font-normal text-gray-500">Conceitos</span></div>
               <div className="font-bold text-gray-800">{materia.pendentes} <span className="font-normal text-gray-500">Pendentes</span></div>
             </div>

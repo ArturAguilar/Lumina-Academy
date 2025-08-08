@@ -25,6 +25,10 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 import BibliotecaAluno from "./components/area_aluno/biblioteca";
 import TransmissoesAluno from "./components/area_aluno/transmissoes";
 import Kanban from "./components/area_aluno/kanban";
+import Conquistas from "./components/area_aluno/conquistas";
+import Chat from "./components/area_aluno/chat";
+import Suporte from "./components/area_aluno/suporte";
+// import Configuracoes from "./components/area_aluno/configuracoes";
 
 function LandingPage() {
   return (
@@ -55,6 +59,10 @@ function MainContent() {
     { path: "/area_aluno/biblioteca", element: <BibliotecaAluno /> },
     { path: "/area_aluno/transmissoes", element: <TransmissoesAluno /> },
     { path: "/area_aluno/transmissoes/:materia", element: <TransmissoesAluno /> },
+    { path: "/area_aluno/conquistas", element: <Conquistas /> },
+    { path: "/area_aluno/chat", element: <Chat /> },
+    { path: "/area_aluno/suporte", element: <Suporte /> },
+    // { path: "/area_aluno/configuracoes", element: <Configuracoes /> },
   ];
 
   return (

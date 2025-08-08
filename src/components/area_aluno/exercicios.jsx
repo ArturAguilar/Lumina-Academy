@@ -233,7 +233,7 @@ export default function ExerciciosDashboard() {
             <div className="w-full h-2 rounded-full mb-2" style={{ background: `${card.cor}22` }}>
               <div className="h-2 rounded-full" style={{ background: card.cor, width: `${card.progresso}%` }}></div>
             </div>
-            <div className="flex items-center justify-between text-sm mb-2">
+            <div className="flex items-center justify-between text-xs sm:text-sm mb-2">
               <div className="font-bold text-gray-800">24 <span className="font-normal text-gray-500">Exercícios</span></div>
               <div className="font-bold text-gray-800">4 <span className="font-normal text-gray-500">Pendentes</span></div>
             </div>
